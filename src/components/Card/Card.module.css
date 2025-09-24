@@ -1,0 +1,516 @@
+/* CSS Custom Properties for consistent theming */
+:root {
+  --primary-color: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --danger-color: #f43f5e;
+  --danger-light: #fb7185;
+  --success-color: #06d6a0;
+  --success-light: #34d399;
+  --success-dark: #059669;
+  --warning-color: #fbbf24;
+  --accent-color: #8b5cf6;
+  --accent-light: #a78bfa;
+  
+  /* Sophisticated grays */
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+  
+  /* Enhanced shadows with colored tints */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  --shadow-colored: 0 10px 25px -5px rgba(99, 102, 241, 0.15), 0 4px 6px -2px rgba(99, 102, 241, 0.05);
+  --shadow-success: 0 10px 25px -5px rgba(6, 214, 160, 0.15), 0 4px 6px -2px rgba(6, 214, 160, 0.05);
+  
+  /* Modern border radius */
+  --border-radius: 16px;
+  --border-radius-sm: 8px;
+  --border-radius-lg: 24px;
+  
+  /* Smooth transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  --gradient-success: linear-gradient(135deg, var(--success-color) 0%, var(--success-light) 100%);
+  --gradient-card: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+  --gradient-card-hover: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+/* Card container styling */
+.card {
+  background: var(--gradient-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  animation: cardSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  max-width: 420px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+/* Subtle gradient overlay */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+  opacity: 0;
+  transition: var(--transition-smooth);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Card slide-in animation */
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Card hover effects */
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-colored);
+  border-color: rgba(99, 102, 241, 0.3);
+  background: var(--gradient-card-hover);
+}
+
+/* Liked card styling */
+.card.liked {
+  border-color: rgba(6, 214, 160, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 50%, #ecfdf5 100%);
+  position: relative;
+}
+
+.card.liked::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(6, 214, 160, 0.03) 0%, rgba(52, 211, 153, 0.03) 100%);
+  pointer-events: none;
+  border-radius: var(--border-radius);
+}
+
+.card.liked:hover {
+  border-color: rgba(6, 214, 160, 0.4);
+  box-shadow: var(--shadow-success);
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 30%, #ecfdf5 100%);
+}
+
+/* Card header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+/* Card title */
+.title {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.3;
+  word-wrap: break-word;
+  flex: 1;
+  margin-right: 0.5rem;
+  letter-spacing: -0.025em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Delete button */
+.deleteButton {
+  background: linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(251, 113, 133, 0.1) 100%);
+  border: 1px solid rgba(244, 63, 94, 0.2);
+  color: var(--danger-color);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.375rem;
+  border-radius: var(--border-radius-sm);
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-bounce);
+  line-height: 1;
+  flex-shrink: 0;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.deleteButton:hover {
+  background: linear-gradient(135deg, var(--danger-color) 0%, var(--danger-light) 100%);
+  color: white;
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+  border-color: var(--danger-color);
+}
+
+.deleteButton:active {
+  transform: scale(0.95) rotate(-2deg);
+}
+
+.deleteButton:focus {
+  outline: 2px solid var(--danger-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.1);
+}
+
+/* Card content */
+.cardContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Status container */
+.statusContainer {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Status labels */
+.statusLabel {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-lg);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: var(--transition-bounce);
+  animation: labelFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.statusLabel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.statusLabel:hover::before {
+  left: 100%;
+}
+
+@keyframes labelFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.likedLabel {
+  background: #06d6a0;
+  color: white;
+  box-shadow: 0 4px 12px rgba(6, 214, 160, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+}
+
+.likedLabel:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(6, 214, 160, 0.4);
+  background: #059669;
+}
+
+.notLikedLabel {
+  background: #e5e7eb;
+  color: #374151;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d1d5db;
+  font-weight: 700;
+}
+
+.notLikedLabel:hover {
+  transform: scale(1.05);
+  background: #9ca3af;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Like button */
+.likeButton {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--border-radius);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #475569;
+  transition: var(--transition-bounce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.likeButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s;
+}
+
+.likeButton:hover::before {
+  left: 100%;
+}
+
+.likeButton:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.25);
+  border-color: #6366f1;
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.likeButton:active {
+  transform: scale(0.98) translateY(0);
+}
+
+.likeButton:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+/* Active (liked) button state */
+.likeButtonActive {
+  background: #06d6a0;
+  border-color: #059669;
+  color: white;
+  box-shadow: 0 4px 12px rgba(6, 214, 160, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.likeButtonActive:hover {
+  background: #059669;
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 8px 20px rgba(6, 214, 160, 0.4);
+  border-color: #047857;
+}
+
+/* Heart icon */
+.heartIcon {
+  font-size: 1.5rem;
+  transition: var(--transition-bounce);
+  filter: grayscale(100%) brightness(0.8);
+  transform: scale(0.9);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heartIconLiked {
+  filter: grayscale(0%) brightness(1.2) drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  transform: scale(1.3);
+  animation: heartBeat 0.8s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1.3); }
+  15% { transform: scale(1.5) rotate(-5deg); }
+  30% { transform: scale(1.2) rotate(2deg); }
+  45% { transform: scale(1.4) rotate(-2deg); }
+  60% { transform: scale(1.25) rotate(1deg); }
+  75% { transform: scale(1.35) rotate(-1deg); }
+  100% { transform: scale(1.3) rotate(0deg); }
+}
+
+/* Button text */
+.buttonText {
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  font-size: 0.9rem;
+  color: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Responsive design */
+
+/* Mobile-first approach */
+@media (max-width: 480px) {
+  .card {
+    padding: 1rem;
+    min-height: 180px;
+  }
+  
+  .title {
+    font-size: 1.125rem;
+  }
+  
+  .likeButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    min-height: 2.5rem;
+  }
+  
+  .statusLabel {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .deleteButton {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1.25rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 481px) and (max-width: 768px) {
+  .card {
+    padding: 1.25rem;
+    min-height: 190px;
+  }
+  
+  .title {
+    font-size: 1.1875rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+  .card {
+    padding: 1.5rem;
+    min-height: 200px;
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .likeButton:hover {
+    transform: scale(1.08);
+  }
+}
+
+/* Large desktop styles */
+@media (min-width: 1200px) {
+  .card {
+    max-width: 450px;
+    min-height: 220px;
+  }
+  
+  .title {
+    font-size: 1.375rem;
+  }
+}
+
+/* High-contrast mode support */
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid var(--gray-800);
+  }
+  
+  .likeButton {
+    border-width: 2px;
+  }
+  
+  .statusLabel {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .likeButton,
+  .heartIcon,
+  .statusLabel,
+  .deleteButton {
+    animation: none;
+    transition: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .likeButton:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-50: #111827;
+    --gray-100: #1f2937;
+    --gray-200: #374151;
+    --gray-300: #4b5563;
+    --gray-400: #6b7280;
+    --gray-500: #9ca3af;
+    --gray-600: #d1d5db;
+    --gray-700: #e5e7eb;
+    --gray-800: #f3f4f6;
+    --gray-900: #f9fafb;
+  }
+  
+  .card {
+    background: var(--gray-100);
+    border-color: var(--gray-300);
+  }
+  
+  .card.liked {
+    background: linear-gradient(135deg, var(--gray-100) 0%, #064e3b 100%);
+  }
+}
